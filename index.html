@@ -1,0 +1,67 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- MY CSS Style CODE -->
+
+    <title>My first mini project</title>
+    <style>
+      body {
+        font-family: "roboto", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .txtlimits {
+        font-size: 16px;
+        width: 400px;
+        height: 100px;
+      }
+      .red {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Tell us about you!</h1>
+      <textarea class="txtlimits"></textarea>
+      <div class="output"></div>
+    </div>
+
+    <!-- MY JS CODE -->
+    <script>
+      const output = document.querySelector(".output");
+      const text = document.querySelector("textarea");
+      /*
+    text.addEventListener("change",textCounter);
+    text.addEventListener("keyup",textCounter);
+    text.addEventListener("keydown",textCounter);
+    */
+      ["keyup", "keydown", "change"].forEach(function (e) {
+        text.addEventListener(e, textCounter);
+      });
+
+      const maxLenght = 25;
+      const warnLenght = 20;
+
+      function textCounter(e) {
+        console.log(e);
+        let count = text.value.length;
+        console.log(count);
+        if (count > maxLenght) {
+          text.value = text.value.substring(0, maxLenght);
+        }
+        if (count > warnLenght) {
+          output.classList.add("red");
+        } else {
+          output.classList.remove("red");
+        }
+        output.innerHTML = maxLenght - count + " characters left";
+      }
+    </script>
+  </body>
+</html>
